@@ -1,0 +1,46 @@
+create database carlife;
+use carlife;
+
+create table cars(         
+type_of_cars varchar(10),
+model_of_cars varchar(10),
+price int,
+id int(10) primary key,
+date_of_make date,
+country_of_make varchar(10)
+);
+
+create table employees(         
+name varchar(10),
+job varchar(10),
+salary int(10),
+phone_no int unique,
+id int primary key 
+);
+
+create table managers(          
+name varchar(10),
+salary int(10),
+part varchar(10),
+phone_no int primary key
+);
+
+create table departments(         
+name varchar(10),
+role varchar(10),
+no_of_employees int,
+manager_of_part varchar(10)
+);
+
+create table buyer(         
+name varchar(10),
+phone_no int(10) unique,
+id int(10) primary key,
+car varchar(10),
+name_of_seller varchar(10),
+payment_method varchar(10)
+);
+alter table cars add buyer_id int;
+alter table cars add constraint cars foreign key(buyer_id) references buyer(id);
+alter table departments add employee_id int;
+alter table departments add constraint departments foreign key(employee_id) references employees(id);
